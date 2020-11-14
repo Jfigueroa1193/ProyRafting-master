@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RAFTINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Cliente_ID" />
+          </Key>
+          <Property Name="Cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nacionalidad" Type="nchar" MaxLength="30" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Apellidos" Type="nchar" MaxLength="50" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Correo" Type="nchar" MaxLength="30" />
+          <Property Name="Clave" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Colaboradores">
+          <Key>
+            <PropertyRef Name="Colaborador_ID" />
+          </Key>
+          <Property Name="Colaborador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Apellidos" Type="nchar" MaxLength="50" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Correo" Type="nchar" MaxLength="30" />
+          <Property Name="Rol_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="Equipo_ID" />
+          </Key>
+          <Property Name="Equipo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Estado" Type="nchar" MaxLength="30" />
+          <Property Name="Observacion" Type="nchar" MaxLength="100" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Historial">
+          <Key>
+            <PropertyRef Name="Historial_ID" />
+          </Key>
+          <Property Name="Historial_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Colaborador_ID" Type="int" Nullable="false" />
+          <Property Name="Observacion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="Operacion_ID" />
+          </Key>
+          <Property Name="Operacion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Reserva_ID" Type="int" Nullable="false" />
+          <Property Name="Colaborador_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservas">
+          <Key>
+            <PropertyRef Name="Reserva_ID" />
+          </Key>
+          <Property Name="Reserva_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="Servicio_ID" Type="int" Nullable="false" />
+          <Property Name="Consentimiento" Type="nchar" MaxLength="10" />
+          <Property Name="Horario" Type="datetime" />
+          <Property Name="Cantidad_Personas" Type="int" />
+          <Property Name="Tipo_Pago" Type="nchar" MaxLength="10" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Observacion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Rol_ID" />
+          </Key>
+          <Property Name="Rol_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="Servicio_ID" />
+          </Key>
+          <Property Name="Servicio_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Precio" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Colaboradores_Colaboradores">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Colaboradores" Type="Self.Colaboradores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Rol_ID" />
+            </Principal>
+            <Dependent Role="Colaboradores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historial_Colaboradores">
+          <End Role="Colaboradores" Type="Self.Colaboradores" Multiplicity="1" />
+          <End Role="Historial" Type="Self.Historial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaboradores">
+              <PropertyRef Name="Colaborador_ID" />
+            </Principal>
+            <Dependent Role="Historial">
+              <PropertyRef Name="Colaborador_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacion_Operacion">
+          <End Role="Colaboradores" Type="Self.Colaboradores" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaboradores">
+              <PropertyRef Name="Colaborador_ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="Colaborador_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacion_Reservas">
+          <End Role="Reservas" Type="Self.Reservas" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservas">
+              <PropertyRef Name="Reserva_ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="Reserva_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservas_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Cliente_ID" />
+            </Principal>
+            <Dependent Role="Reservas">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservas_Servicio">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="Servicio_ID" />
+            </Principal>
+            <Dependent Role="Reservas">
+              <PropertyRef Name="Servicio_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RAFTINGModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colaboradores" EntityType="Self.Colaboradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial" EntityType="Self.Historial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operacion" EntityType="Self.Operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservas" EntityType="Self.Reservas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Colaboradores_Colaboradores" Association="Self.FK_Colaboradores_Colaboradores">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Colaboradores" Association="Self.FK_Historial_Colaboradores">
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+            <End Role="Historial" EntitySet="Historial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacion_Operacion" Association="Self.FK_Operacion_Operacion">
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacion_Reservas" Association="Self.FK_Operacion_Reservas">
+            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservas_Clientes" Association="Self.FK_Reservas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Reservas" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservas_Servicio" Association="Self.FK_Reservas_Servicio">
+            <End Role="Servicio" EntitySet="Servicio" />
+            <End Role="Reservas" EntitySet="Reservas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RAFTINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Cliente_ID" />
+          </Key>
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Reservas" Relationship="Self.FK_Reservas_Clientes" FromRole="Clientes" ToRole="Reservas" />
+        </EntityType>
+        <EntityType Name="Colaboradore">
+          <Key>
+            <PropertyRef Name="Colaborador_ID" />
+          </Key>
+          <Property Name="Colaborador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Colaboradores_Colaboradores" FromRole="Colaboradores" ToRole="Roles" />
+          <NavigationProperty Name="Historials" Relationship="Self.FK_Historial_Colaboradores" FromRole="Colaboradores" ToRole="Historial" />
+          <NavigationProperty Name="Operacions" Relationship="Self.FK_Operacion_Operacion" FromRole="Colaboradores" ToRole="Operacion" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="Equipo_ID" />
+          </Key>
+          <Property Name="Equipo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Observacion" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Cantidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Historial">
+          <Key>
+            <PropertyRef Name="Historial_ID" />
+          </Key>
+          <Property Name="Historial_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Colaborador_ID" Type="Int32" Nullable="false" />
+          <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Colaboradore" Relationship="Self.FK_Historial_Colaboradores" FromRole="Historial" ToRole="Colaboradores" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="Operacion_ID" />
+          </Key>
+          <Property Name="Operacion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Reserva_ID" Type="Int32" Nullable="false" />
+          <Property Name="Colaborador_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Colaboradore" Relationship="Self.FK_Operacion_Operacion" FromRole="Operacion" ToRole="Colaboradores" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK_Operacion_Reservas" FromRole="Operacion" ToRole="Reservas" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Reserva_ID" />
+          </Key>
+          <Property Name="Reserva_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Servicio_ID" Type="Int32" Nullable="false" />
+          <Property Name="Consentimiento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Horario" Type="DateTime" Precision="3" />
+          <Property Name="Cantidad_Personas" Type="Int32" />
+          <Property Name="Tipo_Pago" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Reservas_Clientes" FromRole="Reservas" ToRole="Clientes" />
+          <NavigationProperty Name="Operacions" Relationship="Self.FK_Operacion_Reservas" FromRole="Reservas" ToRole="Operacion" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Reservas_Servicio" FromRole="Reservas" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Rol_ID" />
+          </Key>
+          <Property Name="Rol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Colaboradores" Relationship="Self.FK_Colaboradores_Colaboradores" FromRole="Roles" ToRole="Colaboradores" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="Servicio_ID" />
+          </Key>
+          <Property Name="Servicio_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Precio" Type="Double" />
+          <NavigationProperty Name="Reservas" Relationship="Self.FK_Reservas_Servicio" FromRole="Servicio" ToRole="Reservas" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Reservas_Clientes">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Reservas" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Cliente_ID" />
+            </Principal>
+            <Dependent Role="Reservas">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaboradores_Colaboradores">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Colaboradores" Type="Self.Colaboradore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Rol_ID" />
+            </Principal>
+            <Dependent Role="Colaboradores">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historial_Colaboradores">
+          <End Role="Colaboradores" Type="Self.Colaboradore" Multiplicity="1" />
+          <End Role="Historial" Type="Self.Historial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaboradores">
+              <PropertyRef Name="Colaborador_ID" />
+            </Principal>
+            <Dependent Role="Historial">
+              <PropertyRef Name="Colaborador_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacion_Operacion">
+          <End Role="Colaboradores" Type="Self.Colaboradore" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaboradores">
+              <PropertyRef Name="Colaborador_ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="Colaborador_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operacion_Reservas">
+          <End Role="Reservas" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservas">
+              <PropertyRef Name="Reserva_ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="Reserva_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservas_Servicio">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="Reservas" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="Servicio_ID" />
+            </Principal>
+            <Dependent Role="Reservas">
+              <PropertyRef Name="Servicio_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Colaboradores" EntityType="Self.Colaboradore" />
+          <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
+          <EntitySet Name="Historials" EntityType="Self.Historial" />
+          <EntitySet Name="Operacions" EntityType="Self.Operacion" />
+          <EntitySet Name="Reservas" EntityType="Self.Reserva" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Servicios" EntityType="Self.Servicio" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Reservas_Clientes" Association="Self.FK_Reservas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Reservas" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaboradores_Colaboradores" Association="Self.FK_Colaboradores_Colaboradores">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historial_Colaboradores" Association="Self.FK_Historial_Colaboradores">
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+            <End Role="Historial" EntitySet="Historials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacion_Operacion" Association="Self.FK_Operacion_Operacion">
+            <End Role="Colaboradores" EntitySet="Colaboradores" />
+            <End Role="Operacion" EntitySet="Operacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operacion_Reservas" Association="Self.FK_Operacion_Reservas">
+            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Operacion" EntitySet="Operacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservas_Servicio" Association="Self.FK_Reservas_Servicio">
+            <End Role="Servicio" EntitySet="Servicios" />
+            <End Role="Reservas" EntitySet="Reservas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RAFTINGModelStoreContainer" CdmEntityContainer="BDContext">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="RAFTINGModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colaboradores">
+            <EntityTypeMapping TypeName="RAFTINGModel.Colaboradore">
+              <MappingFragment StoreEntitySet="Colaboradores">
+                <ScalarProperty Name="Colaborador_ID" ColumnName="Colaborador_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipoes">
+            <EntityTypeMapping TypeName="RAFTINGModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="Equipo_ID" ColumnName="Equipo_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historials">
+            <EntityTypeMapping TypeName="RAFTINGModel.Historial">
+              <MappingFragment StoreEntitySet="Historial">
+                <ScalarProperty Name="Historial_ID" ColumnName="Historial_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Colaborador_ID" ColumnName="Colaborador_ID" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operacions">
+            <EntityTypeMapping TypeName="RAFTINGModel.Operacion">
+              <MappingFragment StoreEntitySet="Operacion">
+                <ScalarProperty Name="Operacion_ID" ColumnName="Operacion_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Reserva_ID" ColumnName="Reserva_ID" />
+                <ScalarProperty Name="Colaborador_ID" ColumnName="Colaborador_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservas">
+            <EntityTypeMapping TypeName="RAFTINGModel.Reserva">
+              <MappingFragment StoreEntitySet="Reservas">
+                <ScalarProperty Name="Reserva_ID" ColumnName="Reserva_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Servicio_ID" ColumnName="Servicio_ID" />
+                <ScalarProperty Name="Consentimiento" ColumnName="Consentimiento" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Cantidad_Personas" ColumnName="Cantidad_Personas" />
+                <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo_Pago" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="RAFTINGModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicios">
+            <EntityTypeMapping TypeName="RAFTINGModel.Servicio">
+              <MappingFragment StoreEntitySet="Servicio">
+                <ScalarProperty Name="Servicio_ID" ColumnName="Servicio_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RAFTINGModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
