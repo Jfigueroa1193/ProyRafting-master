@@ -53,9 +53,6 @@
     <Compile Include="DAL\DALGenericoImpl.cs" />
     <Compile Include="DAL\IDALGenerico.cs" />
     <Compile Include="DAL\UnidadDeTrabajo.cs" />
-    <Compile Include="Entities\Cliente.cs">
-      <DependentUpon>RAFTINGModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Colaboradore.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
@@ -92,7 +89,16 @@
     <Compile Include="Entities\Servicio.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\sysdiagram.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Usuario.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

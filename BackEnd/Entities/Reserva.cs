@@ -22,7 +22,6 @@ namespace BackEnd.Entities
     
         public int Reserva_ID { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-        public int Cliente_ID { get; set; }
         public int Servicio_ID { get; set; }
         public string Consentimiento { get; set; }
         public Nullable<System.DateTime> Horario { get; set; }
@@ -30,10 +29,11 @@ namespace BackEnd.Entities
         public string Tipo_Pago { get; set; }
         public Nullable<double> Total { get; set; }
         public string Observacion { get; set; }
+        public int Usuario_ID { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Operacion> Operacions { get; set; }
         public virtual Servicio Servicio { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

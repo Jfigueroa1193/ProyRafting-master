@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FrontEnd.Models.ClienteViewModel>
+﻿@model IEnumerable<FrontEnd.Models.UsuarioViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Clave)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol_ID)
+        </th>
         <th></th>
     </tr>
 
@@ -53,9 +56,12 @@
             @Html.DisplayFor(modelItem => item.Clave)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Cliente_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Cliente_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Cliente_ID })
+            @Html.DisplayFor(modelItem => item.Rol_ID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Usuario_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Usuario_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Usuario_ID })
         </td>
     </tr>
 }

@@ -1,4 +1,4 @@
-﻿@model FrontEnd.Models.ClienteViewModel
+﻿@model FrontEnd.Models.UsuarioViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>ClienteViewModel</h4>
+    <h4>UsuarioViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -58,9 +58,17 @@
             @Html.DisplayFor(model => model.Clave)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol_ID)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Cliente_ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Usuario_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

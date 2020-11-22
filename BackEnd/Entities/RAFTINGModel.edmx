@@ -4,19 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RAFTINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Clientes">
-          <Key>
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="Cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nacionalidad" Type="nchar" MaxLength="30" />
-          <Property Name="Nombre" Type="nchar" MaxLength="50" />
-          <Property Name="Apellidos" Type="nchar" MaxLength="50" />
-          <Property Name="Telefono" Type="int" />
-          <Property Name="Correo" Type="nchar" MaxLength="30" />
-          <Property Name="Clave" Type="nchar" MaxLength="30" />
-        </EntityType>
+    <Schema Namespace="RAFTINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Colaboradores">
           <Key>
             <PropertyRef Name="Colaborador_ID" />
@@ -27,6 +15,7 @@
           <Property Name="Telefono" Type="int" />
           <Property Name="Correo" Type="nchar" MaxLength="30" />
           <Property Name="Rol_ID" Type="int" Nullable="false" />
+          <Property Name="Clave" Type="nchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Equipo">
           <Key>
@@ -62,7 +51,7 @@
           </Key>
           <Property Name="Reserva_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="Usuario_ID" Type="int" Nullable="false" />
           <Property Name="Servicio_ID" Type="int" Nullable="false" />
           <Property Name="Consentimiento" Type="nchar" MaxLength="10" />
           <Property Name="Horario" Type="datetime" />
@@ -95,6 +84,19 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nacionalidad" Type="nchar" MaxLength="30" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Apellidos" Type="nchar" MaxLength="50" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Correo" Type="nchar" MaxLength="30" />
+          <Property Name="Clave" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rol_ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Colaboradores_Colaboradores">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -145,14 +147,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reservas_Clientes">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="Cliente_ID" />
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Usuario_ID" />
             </Principal>
             <Dependent Role="Reservas">
-              <PropertyRef Name="Cliente_ID" />
+              <PropertyRef Name="Usuario_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -168,8 +170,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RAFTINGModelStoreContainer">
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colaboradores" EntityType="Self.Colaboradores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Historial" EntityType="Self.Historial" Schema="dbo" store:Type="Tables" />
@@ -178,6 +210,7 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Colaboradores_Colaboradores" Association="Self.FK_Colaboradores_Colaboradores">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Colaboradores" EntitySet="Colaboradores" />
@@ -195,7 +228,7 @@
             <End Role="Operacion" EntitySet="Operacion" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservas_Clientes" Association="Self.FK_Reservas_Clientes">
-            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Reservas" EntitySet="Reservas" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservas_Servicio" Association="Self.FK_Reservas_Servicio">
@@ -203,24 +236,10 @@
             <End Role="Reservas" EntitySet="Reservas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RAFTINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="Cliente_ID" />
-          </Key>
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nacionalidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Telefono" Type="Int32" />
-          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Reservas" Relationship="Self.FK_Reservas_Clientes" FromRole="Clientes" ToRole="Reservas" />
-        </EntityType>
         <EntityType Name="Colaboradore">
           <Key>
             <PropertyRef Name="Colaborador_ID" />
@@ -234,6 +253,7 @@
           <NavigationProperty Name="Role" Relationship="Self.FK_Colaboradores_Colaboradores" FromRole="Colaboradores" ToRole="Roles" />
           <NavigationProperty Name="Historials" Relationship="Self.FK_Historial_Colaboradores" FromRole="Colaboradores" ToRole="Historial" />
           <NavigationProperty Name="Operacions" Relationship="Self.FK_Operacion_Operacion" FromRole="Colaboradores" ToRole="Operacion" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Equipo">
           <Key>
@@ -272,7 +292,6 @@
           </Key>
           <Property Name="Reserva_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Servicio_ID" Type="Int32" Nullable="false" />
           <Property Name="Consentimiento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Horario" Type="DateTime" Precision="3" />
@@ -280,9 +299,10 @@
           <Property Name="Tipo_Pago" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Total" Type="Double" />
           <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Reservas_Clientes" FromRole="Reservas" ToRole="Clientes" />
           <NavigationProperty Name="Operacions" Relationship="Self.FK_Operacion_Reservas" FromRole="Reservas" ToRole="Operacion" />
           <NavigationProperty Name="Servicio" Relationship="Self.FK_Reservas_Servicio" FromRole="Reservas" ToRole="Servicio" />
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="RAFTINGModel.FK_Reservas_Clientes1" FromRole="Reserva" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -311,18 +331,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Reservas_Clientes">
-          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Reservas" Type="Self.Reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="Cliente_ID" />
-            </Principal>
-            <Dependent Role="Reservas">
-              <PropertyRef Name="Cliente_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Colaboradores_Colaboradores">
           <End Role="Roles" Type="Self.Role" Multiplicity="1" />
           <End Role="Colaboradores" Type="Self.Colaboradore" Multiplicity="*" />
@@ -384,7 +392,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BDContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
           <EntitySet Name="Colaboradores" EntityType="Self.Colaboradore" />
           <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
           <EntitySet Name="Historials" EntityType="Self.Historial" />
@@ -393,10 +400,6 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Servicios" EntityType="Self.Servicio" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_Reservas_Clientes" Association="Self.FK_Reservas_Clientes">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Reservas" EntitySet="Reservas" />
-          </AssociationSet>
           <AssociationSet Name="FK_Colaboradores_Colaboradores" Association="Self.FK_Colaboradores_Colaboradores">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Colaboradores" EntitySet="Colaboradores" />
@@ -417,29 +420,89 @@
             <End Role="Servicio" EntitySet="Servicios" />
             <End Role="Reservas" EntitySet="Reservas" />
           </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="RAFTINGModel.Usuario" />
+          <AssociationSet Name="FK_Reservas_Clientes1" Association="RAFTINGModel.FK_Reservas_Clientes1">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RAFTINGModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RAFTINGModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Correo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Rol_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reservas" Relationship="RAFTINGModel.FK_Reservas_Clientes1" FromRole="Usuario" ToRole="Reserva" />
+        </EntityType>
+        <Association Name="FK_Reservas_Clientes1">
+          <End Type="RAFTINGModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="RAFTINGModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Usuario_ID" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="Usuario_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RAFTINGModelStoreContainer" CdmEntityContainer="BDContext">
-          <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="RAFTINGModel.Cliente">
-              <MappingFragment StoreEntitySet="Clientes">
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Colaboradores">
             <EntityTypeMapping TypeName="RAFTINGModel.Colaboradore">
               <MappingFragment StoreEntitySet="Colaboradores">
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Colaborador_ID" ColumnName="Colaborador_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
@@ -483,9 +546,9 @@
           <EntitySetMapping Name="Reservas">
             <EntityTypeMapping TypeName="RAFTINGModel.Reserva">
               <MappingFragment StoreEntitySet="Reservas">
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
                 <ScalarProperty Name="Reserva_ID" ColumnName="Reserva_ID" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Servicio_ID" ColumnName="Servicio_ID" />
                 <ScalarProperty Name="Consentimiento" ColumnName="Consentimiento" />
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
@@ -524,6 +587,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="RAFTINGModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RAFTINGModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RAFTINGModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RAFTINGModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RAFTINGModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAFTINGModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RAFTINGModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAFTINGModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RAFTINGModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RAFTINGModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
