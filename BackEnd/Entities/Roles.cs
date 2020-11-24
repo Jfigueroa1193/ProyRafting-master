@@ -12,28 +12,24 @@ namespace BackEnd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Reserva
+    public partial class Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Reserva()
+        public Roles()
         {
-            this.Operacions = new HashSet<Operacion>();
+            this.Colaboradores = new HashSet<Colaboradores>();
+            this.Usuarios = new HashSet<Usuarios>();
+            this.Usuarios1 = new HashSet<Usuarios>();
         }
     
-        public int Reserva_ID { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public int Servicio_ID { get; set; }
-        public string Consentimiento { get; set; }
-        public Nullable<System.DateTime> Horario { get; set; }
-        public Nullable<int> Cantidad_Personas { get; set; }
-        public string Tipo_Pago { get; set; }
-        public Nullable<double> Total { get; set; }
-        public string Observacion { get; set; }
-        public int Usuario_ID { get; set; }
+        public int Rol_ID { get; set; }
+        public string NombreRol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operacion> Operacions { get; set; }
-        public virtual Servicio Servicio { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<Colaboradores> Colaboradores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
     }
 }

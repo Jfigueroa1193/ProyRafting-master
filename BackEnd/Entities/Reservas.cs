@@ -12,24 +12,28 @@ namespace BackEnd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Reservas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Reservas()
         {
-            this.Reservas = new HashSet<Reserva>();
+            this.Operacion = new HashSet<Operacion>();
         }
     
+        public int Reserva_ID { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public int Usuario_ID { get; set; }
-        public string Nacionalidad { get; set; }
-        public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public Nullable<int> Telefono { get; set; }
-        public string Correo { get; set; }
-        public string Clave { get; set; }
-        public int Rol_ID { get; set; }
+        public int Servicio_ID { get; set; }
+        public string Consentimiento { get; set; }
+        public Nullable<System.DateTime> Horario { get; set; }
+        public Nullable<int> Cantidad_Personas { get; set; }
+        public string Tipo_Pago { get; set; }
+        public Nullable<double> Total { get; set; }
+        public string Observacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reservas { get; set; }
+        public virtual ICollection<Operacion> Operacion { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
+        public virtual Servicio Servicio { get; set; }
     }
 }

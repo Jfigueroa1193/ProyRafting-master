@@ -19,6 +19,6 @@ namespace BackEnd.Entities
         public int Colaborador_ID { get; set; }
         public string Observacion { get; set; }
     
-        public virtual Colaboradore Colaboradore { get; set; }
+        public virtual Colaboradores Colaboradores { get; set; }
     }
 }

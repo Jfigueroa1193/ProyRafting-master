@@ -12,14 +12,14 @@ namespace FrontEnd.Controllers
     public class ColaboradorController : Controller
     {
         // GET: Colaborador
-        private ColaboradorViewModel Convertir(Colaboradore colaborador)
+        private ColaboradorViewModel Convertir(Colaboradores colaborador)
         {
             ColaboradorViewModel colaboradorViewModel = new ColaboradorViewModel
             {
                Colaborador_ID = colaborador.Colaborador_ID,
                Nombre = colaborador.Nombre,
                Apellidos = colaborador.Apellidos,
-               Telefono = (int)colaborador.Telefono,
+               Telefono = colaborador.Telefono,
                Correo = colaborador.Correo,
                Rol_ID = (int)colaborador.Rol_ID
 
@@ -31,14 +31,14 @@ namespace FrontEnd.Controllers
         }// FIN DE CONVERTIR
 
 
-        private Colaboradore Convertir(ColaboradorViewModel colaboradorViewModel)
+        private Colaboradores Convertir(ColaboradorViewModel colaboradorViewModel)
         {
-            Colaboradore ColaboradorViewModel = new Colaboradore
+            Colaboradores ColaboradorViewModel = new Colaboradores
             {
                 Colaborador_ID = colaboradorViewModel.Colaborador_ID,
                 Nombre = colaboradorViewModel.Nombre,
                 Apellidos = colaboradorViewModel.Apellidos,
-                Telefono = (int)colaboradorViewModel.Telefono,
+                Telefono = colaboradorViewModel.Telefono,
                 Correo = colaboradorViewModel.Correo,
                 Rol_ID = (int)colaboradorViewModel.Rol_ID
 
@@ -51,8 +51,8 @@ namespace FrontEnd.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            List<Colaboradore> colaboradore;
-            using (UnidadDeTrabajo<Colaboradore> Unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            List<Colaboradores> colaboradore;
+            using (UnidadDeTrabajo<Colaboradores> Unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 colaboradore = Unidad.genericDAL.GetAll().ToList();
             }
@@ -80,9 +80,9 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public ActionResult Create(ColaboradorViewModel colaboradorViewModel)
         {
-            Colaboradore colaborador = this.Convertir(colaboradorViewModel);
+            Colaboradores colaborador = this.Convertir(colaboradorViewModel);
 
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 unidad.genericDAL.Add(colaborador);
                 unidad.Complete();
@@ -96,8 +96,8 @@ namespace FrontEnd.Controllers
         public ActionResult Edit(int id)
         {
 
-            Colaboradore colaborador;
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            Colaboradores colaborador;
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 colaborador = unidad.genericDAL.Get(id);
 
@@ -113,7 +113,7 @@ namespace FrontEnd.Controllers
         {
 
 
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 unidad.genericDAL.Update(this.Convertir(colaboradorViewModel));
                 unidad.Complete();
@@ -128,8 +128,8 @@ namespace FrontEnd.Controllers
         public ActionResult Details(int id)
         {
 
-            Colaboradore colaborador;
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            Colaboradores colaborador;
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 colaborador = unidad.genericDAL.Get(id);
 
@@ -143,8 +143,8 @@ namespace FrontEnd.Controllers
         public ActionResult Delete(int id)
         {
 
-            Colaboradore colaborador;
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            Colaboradores colaborador;
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 colaborador = unidad.genericDAL.Get(id);
 
@@ -156,7 +156,7 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public ActionResult Delete(ColaboradorViewModel colaboradorViewModel)
         {
-            using (UnidadDeTrabajo<Colaboradore> unidad = new UnidadDeTrabajo<Colaboradore>(new BDContext()))
+            using (UnidadDeTrabajo<Colaboradores> unidad = new UnidadDeTrabajo<Colaboradores>(new BDContext()))
             {
                 unidad.genericDAL.Remove(this.Convertir(colaboradorViewModel));
                 unidad.Complete();

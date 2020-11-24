@@ -12,15 +12,15 @@ namespace FrontEnd.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
-        private UsuarioViewModel Convertir(Usuario usuario)
+        private UsuarioViewModel Convertir(Usuarios usuario)
         {
             UsuarioViewModel clienteViewModel = new UsuarioViewModel
             {
                 Usuario_ID = usuario.Usuario_ID,
-                Nombre = usuario.Nombre,
+                Nombre = usuario.NombreUsuario,
                 Apellidos = usuario.Apellidos,
                 Nacionalidad = usuario.Nacionalidad,
-                Telefono = (int)usuario.Telefono,
+                Telefono = usuario.Telefono,
                 Correo = usuario.Correo,
                 Clave = usuario.Clave,
                 Rol_ID = usuario.Rol_ID
@@ -33,14 +33,14 @@ namespace FrontEnd.Controllers
         }// FIN DE CONVERTIR
 
 
-        private Usuario Convertir(UsuarioViewModel usuarioViewModel)
+        private Usuarios Convertir(UsuarioViewModel usuarioViewModel)
         {
-            Usuario UsuarioViewModel = new Usuario            {
+            Usuarios UsuarioViewModel = new Usuarios           {
                 Usuario_ID = usuarioViewModel.Usuario_ID,
-                Nombre = usuarioViewModel.Nombre,
+                NombreUsuario = usuarioViewModel.Nombre,
                 Apellidos = usuarioViewModel.Apellidos,
                 Nacionalidad = usuarioViewModel.Nacionalidad,
-                Telefono = (int)usuarioViewModel.Telefono,
+                Telefono = usuarioViewModel.Telefono,
                 Correo = usuarioViewModel.Correo,
                 Clave = usuarioViewModel.Clave,
                 Rol_ID = usuarioViewModel.Rol_ID
@@ -54,8 +54,8 @@ namespace FrontEnd.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            List<Usuario> usuarios;
-            using (UnidadDeTrabajo<Usuario> Unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            List<Usuarios> usuarios;
+            using (UnidadDeTrabajo<Usuarios> Unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 usuarios = Unidad.genericDAL.GetAll().ToList();
             }
@@ -83,9 +83,9 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public ActionResult Create(UsuarioViewModel usuarioViewModel)
         {
-            Usuario usuario = this.Convertir(usuarioViewModel);
+            Usuarios usuario = this.Convertir(usuarioViewModel);
 
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 unidad.genericDAL.Add(usuario);
                 unidad.Complete();
@@ -99,8 +99,8 @@ namespace FrontEnd.Controllers
         public ActionResult Edit(int id)
         {
 
-            Usuario usuario;
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            Usuarios usuario;
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 usuario = unidad.genericDAL.Get(id);
 
@@ -116,7 +116,7 @@ namespace FrontEnd.Controllers
         {
 
 
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 unidad.genericDAL.Update(this.Convertir(usuarioViewModel));
                 unidad.Complete();
@@ -125,14 +125,11 @@ namespace FrontEnd.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
         public ActionResult Details(int id)
         {
 
-            Usuario usuario;
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            Usuarios usuario;
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 usuario = unidad.genericDAL.Get(id);
 
@@ -141,13 +138,11 @@ namespace FrontEnd.Controllers
             return View(this.Convertir(usuario));
         }
 
-
-
         public ActionResult Delete(int id)
         {
 
-            Usuario usuario;
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            Usuarios usuario;
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 usuario = unidad.genericDAL.Get(id);
 
@@ -159,7 +154,7 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public ActionResult Delete(UsuarioViewModel usuarioViewModel)
         {
-            using (UnidadDeTrabajo<Usuario> unidad = new UnidadDeTrabajo<Usuario>(new BDContext()))
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
                 unidad.genericDAL.Remove(this.Convertir(usuarioViewModel));
                 unidad.Complete();

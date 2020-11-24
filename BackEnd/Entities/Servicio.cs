@@ -17,7 +17,7 @@ namespace BackEnd.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Servicio()
         {
-            this.Reservas = new HashSet<Reserva>();
+            this.Reservas = new HashSet<Reservas>();
         }
     
         public int Servicio_ID { get; set; }
@@ -25,6 +25,6 @@ namespace BackEnd.Entities
         public Nullable<double> Precio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reservas { get; set; }
+        public virtual ICollection<Reservas> Reservas { get; set; }
     }
 }

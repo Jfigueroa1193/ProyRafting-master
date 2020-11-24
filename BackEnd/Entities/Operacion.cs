@@ -19,7 +19,7 @@ namespace BackEnd.Entities
         public int Reserva_ID { get; set; }
         public int Colaborador_ID { get; set; }
     
-        public virtual Colaboradore Colaboradore { get; set; }
-        public virtual Reserva Reserva { get; set; }
+        public virtual Colaboradores Colaboradores { get; set; }
+        public virtual Reservas Reservas { get; set; }
     }
 }

@@ -52,8 +52,10 @@
   <ItemGroup>
     <Compile Include="DAL\DALGenericoImpl.cs" />
     <Compile Include="DAL\IDALGenerico.cs" />
+    <Compile Include="DAL\IUserDAL.cs" />
     <Compile Include="DAL\UnidadDeTrabajo.cs" />
-    <Compile Include="Entities\Colaboradore.cs">
+    <Compile Include="DAL\UserDALImpl.cs" />
+    <Compile Include="Entities\Colaboradores.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Equipo.cs">
@@ -80,25 +82,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RAFTINGModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Reserva.cs">
+    <Compile Include="Entities\Reservas.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Role.cs">
+    <Compile Include="Entities\Roles.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Servicio.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>RAFTINGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
-      <DependentUpon>RAFTINGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sysdiagram.cs">
-      <DependentUpon>RAFTINGModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Usuario.cs">
+    <Compile Include="Entities\Usuarios.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

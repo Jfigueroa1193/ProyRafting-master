@@ -24,7 +24,7 @@ namespace FrontEnd.Models
 
         [Display(Name = "Teléfono")]
         [StringLength(15, MinimumLength = 8)]
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
 
         [Display(Name = "Correo electrónico")]
         [RegularExpression(@"^[0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@(ua)\.(es)$",

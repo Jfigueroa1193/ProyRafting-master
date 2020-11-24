@@ -12,27 +12,26 @@ namespace BackEnd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Colaboradore
+    public partial class Colaboradores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Colaboradore()
+        public Colaboradores()
         {
-            this.Historials = new HashSet<Historial>();
-            this.Operacions = new HashSet<Operacion>();
+            this.Historial = new HashSet<Historial>();
+            this.Operacion = new HashSet<Operacion>();
         }
     
         public int Colaborador_ID { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
-        public Nullable<int> Telefono { get; set; }
+        public string Telefono { get; set; }
         public string Correo { get; set; }
         public int Rol_ID { get; set; }
-        public string Clave { get; set; }
     
-        public virtual Role Role { get; set; }
+        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Historial> Historials { get; set; }
+        public virtual ICollection<Historial> Historial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operacion> Operacions { get; set; }
+        public virtual ICollection<Operacion> Operacion { get; set; }
     }
 }
