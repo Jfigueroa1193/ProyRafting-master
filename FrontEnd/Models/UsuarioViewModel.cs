@@ -16,9 +16,10 @@ namespace FrontEnd.Models
         [DataType(DataType.Text)]
         public string Nacionalidad { get; set; }
 
+        [Required]
         [Display(Name = "Nombre")]
         [DataType(DataType.Text)]
-        public string Nombre { get; set; }
+        public string NombreUsuario { get; set; }
 
         [Display(Name = "Apellidos")]
         [DataType(DataType.Text)]
@@ -40,5 +41,7 @@ namespace FrontEnd.Models
         public string Clave { get; set; }
 
         public int Rol_ID { get; set; }
+
+        public string LoginErrorMessage { get; set; }
     }
 }

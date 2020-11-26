@@ -17,16 +17,13 @@ namespace FrontEnd.Controllers
             UsuarioViewModel clienteViewModel = new UsuarioViewModel
             {
                 Usuario_ID = usuario.Usuario_ID,
-                Nombre = usuario.NombreUsuario,
+                NombreUsuario = usuario.NombreUsuario,
                 Apellidos = usuario.Apellidos,
                 Nacionalidad = usuario.Nacionalidad,
                 Telefono = usuario.Telefono,
                 Correo = usuario.Correo,
                 Clave = usuario.Clave,
                 Rol_ID = usuario.Rol_ID
-
-
-
 
             };
             return clienteViewModel;
@@ -37,7 +34,7 @@ namespace FrontEnd.Controllers
         {
             Usuarios UsuarioViewModel = new Usuarios           {
                 Usuario_ID = usuarioViewModel.Usuario_ID,
-                NombreUsuario = usuarioViewModel.Nombre,
+                NombreUsuario = usuarioViewModel.NombreUsuario,
                 Apellidos = usuarioViewModel.Apellidos,
                 Nacionalidad = usuarioViewModel.Nacionalidad,
                 Telefono = usuarioViewModel.Telefono,
@@ -66,9 +63,6 @@ namespace FrontEnd.Controllers
             {
                 lista.Add(this.Convertir(item));
             }
-
-
-
 
             return View(lista);
         }

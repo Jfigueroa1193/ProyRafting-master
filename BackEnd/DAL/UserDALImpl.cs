@@ -6,7 +6,7 @@ using BackEnd.Entities;
 
 namespace BackEnd.DAL
 {
-    class UserDALImpl : IUserDAL
+  public class UserDALImpl : IUserDAL
     {
         private BDContext context;
 
