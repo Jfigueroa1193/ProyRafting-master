@@ -21,14 +21,14 @@ namespace BackEnd.Entities
         }
     
         public int Reserva_ID { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public System.DateTime Fecha { get; set; }
         public int Usuario_ID { get; set; }
         public int Servicio_ID { get; set; }
         public string Consentimiento { get; set; }
-        public Nullable<System.DateTime> Horario { get; set; }
-        public Nullable<int> Cantidad_Personas { get; set; }
+        public System.DateTime Horario { get; set; }
+        public int Cantidad_Personas { get; set; }
         public string Tipo_Pago { get; set; }
-        public Nullable<double> Total { get; set; }
+        public double Total { get; set; }
         public string Observacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

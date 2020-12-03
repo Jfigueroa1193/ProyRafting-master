@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0507f058024a4531bb5672e9a8d51e9a" Name="Diagram1">
+      <Diagram DiagramId="c1fc585932084074a5f52c9103286ce1" Name="Diagram1">
         <EntityTypeShape EntityType="RAFTINGModel.Colaboradores" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Equipo" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Historial" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="RAFTINGModel.Reservas" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Roles" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Servicio" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RAFTINGModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Usuarios" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="RAFTINGModel.FK_Colaboradores_Colaboradores" ManuallyRouted="false" />
         <AssociationConnector Association="RAFTINGModel.FK_Historial_Colaboradores" ManuallyRouted="false" />

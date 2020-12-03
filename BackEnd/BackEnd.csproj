@@ -97,12 +97,23 @@
     <Compile Include="Entities\Servicio.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_infoReserva_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagrams.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Usuarios.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="Entities\RAFTINGModel.edmx">

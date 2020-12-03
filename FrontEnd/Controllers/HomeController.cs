@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEnd.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,26 @@ namespace FrontEnd.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(UsuarioViewModel loginDataModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // AQUÍ EL CÓDIGO DE VALIDACIÓN DEL USUARIO
+                return RedirectToAction("LoginOk");
+            }
+            else
+            {
+                return View(loginDataModel);
+            }
+        }
+
+        public ActionResult LoginOK()
+        {
+            // LA VALIDACIÓN DEL USUARIO HA SIDO CORRECTA
             return View();
         }
 
