@@ -71,10 +71,19 @@ namespace FrontEnd.Controllers
 
         public ActionResult Create()
         {
+            ReservaViewModel reserva = new ReservaViewModel { };
 
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
+            {
+                reserva.Usuarios = unidad.genericDAL.GetAll().ToList();
+            }
 
-            return View();
-        }//FIN DE INDEX
+            using (UnidadDeTrabajo<Servicio> unidad = new UnidadDeTrabajo<Servicio>(new BDContext()))
+            {
+                reserva.Servicios = unidad.genericDAL.GetAll().ToList();
+            }
+            return View(reserva);
+        }
 
         [HttpPost]
         public ActionResult Create(ReservaViewModel reservaViewModel)
@@ -86,7 +95,6 @@ namespace FrontEnd.Controllers
                 unidad.genericDAL.Add(reserva);
                 unidad.Complete();
             }
-
             return RedirectToAction("Index");
         }
 
@@ -101,6 +109,19 @@ namespace FrontEnd.Controllers
                 reserva = unidad.genericDAL.Get(id);
 
             }
+
+            ReservaViewModel reservas = this.Convertir(reserva);
+
+            Usuarios  usuario;
+            List<Usuarios> usuarios;
+
+            using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
+            {
+               usuarios = unidad.genericDAL.GetAll().ToList();
+               usuario = unidad.genericDAL.Get(reservas.Usuario_ID);
+            }
+            usuarios.Insert(0, usuario);
+            reservas.Usuarios = usuarios;
 
 
             return View(this.Convertir(reserva));
