@@ -73,7 +73,7 @@
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1427.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -170,6 +170,28 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\now-ui-dashboard.css" />
+    <Content Include="Content\assets\css\now-ui-dashboard.min.css" />
+    <Content Include="Content\assets\demo\demo.css" />
+    <Content Include="Content\assets\demo\demo.js" />
+    <Content Include="Content\assets\img\apple-icon.png" />
+    <Content Include="Content\assets\img\bg5.jpg" />
+    <Content Include="Content\assets\img\default-avatar.png" />
+    <Content Include="Content\assets\img\favicon.png" />
+    <Content Include="Content\assets\img\header.jpg" />
+    <Content Include="Content\assets\img\logo.png" />
+    <Content Include="Content\assets\img\mike.jpg" />
+    <Content Include="Content\assets\img\now-logo.png" />
+    <Content Include="Content\assets\img\now-ui-dashboard.gif" />
+    <Content Include="Content\assets\js\core\bootstrap.min.js" />
+    <Content Include="Content\assets\js\core\jquery.min.js" />
+    <Content Include="Content\assets\js\core\popper.min.js" />
+    <Content Include="Content\assets\js\now-ui-dashboard.js" />
+    <Content Include="Content\assets\js\now-ui-dashboard.min.js" />
+    <Content Include="Content\assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="Content\assets\js\plugins\chartjs.min.js" />
+    <Content Include="Content\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -292,6 +314,48 @@
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\assets\css\bootstrap.min.css.map" />
+    <Content Include="Content\assets\css\now-ui-dashboard.css.map" />
+    <Content Include="Content\assets\fonts\nucleo-license.md" />
+    <Content Include="Content\assets\fonts\nucleo-outline.eot" />
+    <Content Include="Content\assets\fonts\nucleo-outline.ttf" />
+    <Content Include="Content\assets\fonts\nucleo-outline.woff" />
+    <Content Include="Content\assets\fonts\nucleo-outline.woff2" />
+    <Content Include="Content\assets\js\now-ui-dashboard.js.map" />
+    <Content Include="Content\assets\scss\now-ui-dashboard.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\cards\_card-chart.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\cards\_card-map.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\cards\_card-plain.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\cards\_card-user.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_buttons.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_cards.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_dropdown.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_inputs.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_page-header.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_sidebar.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_transparency.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\plugins\_plugin-animate-bootstrap-notify.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\plugins\_plugin-perfect-scrollbar.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_alerts.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_buttons.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_cards.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_checkboxes-radio.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_dropdown.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_fixed-plugin.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_footers.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_images.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_inputs.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_misc.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_mixins.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_navbar.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_nucleo-outline.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_page-header.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_responsive.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_tables.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_typography.scss" />
+    <Content Include="Content\assets\scss\now-ui-dashboard\_variables.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -351,6 +415,7 @@
     <Content Include="Views\Reserva\Edit.cshtml" />
     <Content Include="Views\Reserva\Details.cshtml" />
     <Content Include="Views\Reserva\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

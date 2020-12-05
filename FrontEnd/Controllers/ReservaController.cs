@@ -22,9 +22,9 @@ namespace FrontEnd.Controllers
                 Servicio_ID = reserva.Servicio_ID,
                 Consentimiento = reserva.Consentimiento,
                 Horario = (DateTime)reserva.Horario,
-                Cantidad_Personas = reserva.Cantidad_Personas,
+                Cantidad_Personas = (int)reserva.Cantidad_Personas,
                 Tipo_Pago = reserva.Tipo_Pago,
-                Total = reserva.Total,
+                Total = (double)reserva.Total,
                 Observacion = reserva.Observacion
             };
             return reservaViewModel;

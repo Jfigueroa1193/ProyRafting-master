@@ -13,18 +13,18 @@ namespace FrontEnd.Models
         [Key]
         public int Equipo_ID { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombre del equipo")]
         [StringLength(50, MinimumLength = 2)]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Debe digitar el nombre")]
         public string Nombre { get; set; }
 
-        [Display(Name = "Estado")]
+        [Display(Name = "Estado del equipo")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Digite un estado")]
         public string Estado { get; set; }
 
-        [Display(Name = "Anote si tiene observaciones")]
+        [Display(Name = "Observaciones")]
         [DataType(DataType.Text)]
         public string Observacion { get; set; }
 
