@@ -2,90 +2,95 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ReservaViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
+@section seccion
+{
+    <h2>Detalles de reserva</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario_ID)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Usuario_ID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Servicio_ID)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Usuario_ID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Servicio_ID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Usuario_ID)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Consentimiento)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Servicio_ID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Consentimiento)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Servicio_ID)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Horario)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Consentimiento)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Horario)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Consentimiento)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cantidad_Personas)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Horario)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cantidad_Personas)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Horario)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tipo_Pago)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cantidad_Personas)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tipo_Pago)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Cantidad_Personas)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo_Pago)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Tipo_Pago)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacion)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Observacion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Total)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Reserva_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Observacion)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Reserva_ID }) |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+
+}

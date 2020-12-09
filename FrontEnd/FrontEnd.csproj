@@ -179,6 +179,7 @@
     <Content Include="Content\assets\img\bg5.jpg" />
     <Content Include="Content\assets\img\default-avatar.png" />
     <Content Include="Content\assets\img\favicon.png" />
+    <Content Include="Content\assets\img\fondo.jpg" />
     <Content Include="Content\assets\img\header.jpg" />
     <Content Include="Content\assets\img\logo.png" />
     <Content Include="Content\assets\img\mike.jpg" />
@@ -416,6 +417,7 @@
     <Content Include="Views\Reserva\Details.cshtml" />
     <Content Include="Views\Reserva\Delete.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Shared\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

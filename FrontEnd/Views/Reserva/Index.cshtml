@@ -2,81 +2,96 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Servicio_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Consentimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Horario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad_Personas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo_Pago)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Observacion)
-        </th>
-        <th></th>
-    </tr>
+@section seccion
+{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servicio_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Consentimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Horario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad_Personas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo_Pago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Observacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Reserva_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Reserva_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Reserva_ID })
-        </td>
-    </tr>
+    <h2>Reservas</h2>
+
+    <p>
+        @Html.ActionLink("Crear reserva", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Servicio_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consentimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad_Personas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_Pago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servicio_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Consentimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Horario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad_Personas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Pago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacion)
+                </td>
+                <td>
+                   
+
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Reserva_ID }, new
+                       { @class = "btn btn-warning", title = "Editar" })
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Reserva_ID }, new
+                    { @class = "btn btn-info", title = "Detalles" })
+
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Reserva_ID }, new
+                    { @class = "btn btn-danger", title = "Eliminar" })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
 }
-
-</table>

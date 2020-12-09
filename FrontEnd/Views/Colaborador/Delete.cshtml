@@ -59,10 +59,15 @@
         @Html.HiddenFor(model => model.Colaborador_ID)
 
         <div class="form-actions no-color">
-            <input type="submit" value="Ekiminar" class="btn btn-danger" /> |
-
-            @Html.ActionLink("Regresar", "Index" )
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
         </div>
+
+
     }
     </div>
+
+    <div>
+        @Html.ActionLink("Regresar", "Index")
+    </div>
+
 }
