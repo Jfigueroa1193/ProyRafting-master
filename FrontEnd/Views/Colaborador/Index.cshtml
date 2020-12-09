@@ -9,7 +9,7 @@
 {
 
     <h4>COLABORADORES</h4>
-    @Html.ActionLink("Agregar", "Create", new { @class = "btn btn-danger", title = "Agregar" })
+    @Html.ActionLink("Agregar colaborador", "Create", new { @class = "btn btn-danger", title = "Agregar" })
 
     <table class="table">
         <tr>
@@ -53,8 +53,8 @@
              
 
 
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Colaborador_ID }, new
-                    { @class = "btn btn-warning", title = "Editar" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Colaborador_ID }, new
+                        { @class = "btn btn-warning", title = "Editar" })
 
                     @Html.ActionLink("Detalles", "Details", new { id = item.Colaborador_ID }, new
                     { @class = "btn btn-info", title = "Detalles" })

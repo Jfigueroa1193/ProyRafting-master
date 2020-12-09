@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+
+    Layout = "~/Views/Shared/InicioLayout.cshtml";
+}
+
+
+@section seccionInicio {
+
+    <div class="brand">
+        <h1 class="title">
+            ¡RESERVE YA!
+        </h1>
+        <h3 class="description">Y viva una experiencia única</h3>
+        <br />
+
+
+
+
+        @Html.ActionLink("INICIAR SESIÓN", "Login", new { }, new
+      { @class = "btn btn-warning btn-round btn-lg", title = "Iniciar sesión" })
+
+
+
+
+
+    </div>
+
+}

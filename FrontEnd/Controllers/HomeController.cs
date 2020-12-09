@@ -9,13 +9,13 @@ namespace FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(UsuarioViewModel loginDataModel)
+        public ActionResult Login(UsuarioViewModel loginDataModel)
         {
             if (ModelState.IsValid)
             {
@@ -34,7 +34,7 @@ namespace FrontEnd.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Inicio()
         {
             ViewBag.Message = "Your application description page.";
 

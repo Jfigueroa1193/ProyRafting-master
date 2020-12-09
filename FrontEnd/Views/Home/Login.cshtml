@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    Layout = "~/Views/Shared/InicioLayout.cshtml";  
+}
+
+@model FrontEnd.Models.UsuarioViewModel
+
+@section seccionInicio {
+
+    <div class="card">
+        <article class="card-body">
+
+            <h class="title" style="color:#f96332"> INICIO DE SESIÓN </h>
+            <hr>
+            <p class="text-success text-center"></p>
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <br />
+                @Html.TextBoxFor(x => x.Correo, new { @class = "form-control", placeholder = "Ingrese su correo", type = "email" })
+                @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
+                <br />
+
+
+                @Html.PasswordFor(x => x.Clave, new { @class = "form-control", placeholder = "******", type = "password" })
+                <span class="input-group-btn">
+                    <button id="verPassword" class="btn btn-default" type="button">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </button>
+                </span> @Html.ValidationMessageFor(x => x.Clave, null, new { @class = "text-danger" })
+                <br />
+
+                <button class="btn btn-primary btn-block" type="submit">
+                    Iniciar sesión
+                </button>
+
+                @*<div class="checkbox-inline pull-right">
+                        @Html.CheckBoxFor(x => x.RememberMe, new { @class = "" })
+                        @Html.LabelFor(x => x.RememberMe, new { @class = "" })
+                    </div>*@
+                <br />
+            }
+        </article>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center" style="color: #1d2320">
+                ¿No está registrado?
+                <br />
+                <a href="#">Registrese aquí</a>
+            </div>
+        </div>
+    </div>
+
+}
+
+@*@section scripts {
+
+        <script>
+            $('#verPassword').on('mousedown', function () {
+                $('#Clave').attr("type", "text");
+            });
+
+            $('#verPassword').on('mouseup mouseleave', function () {
+                $('#Clave').attr("type", "clave");
+            });
+        </script>
+    }*@
