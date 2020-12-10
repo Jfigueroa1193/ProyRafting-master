@@ -61,5 +61,100 @@ namespace FrontEnd.Controllers
 
             return View(lista);
         }
+
+        public ActionResult Create()
+        {
+
+
+            return View();
+        }//FIN DE INDEX
+
+        [HttpPost]
+        public ActionResult Create(HistorialViewModel historialViewModel)
+        {
+           Historial historial = this.Convertir(historialViewModel);
+
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                unidad.genericDAL.Add(historial);
+                unidad.Complete();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        public ActionResult Edit(int id)
+        {
+
+            Historial historial;
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                historial = unidad.genericDAL.Get(id);
+
+            }
+
+
+            return View(this.Convertir(historial));
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(HistorialViewModel historialViewModel)
+        {
+
+
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                unidad.genericDAL.Update(this.Convertir(historialViewModel));
+                unidad.Complete();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        public ActionResult Details(int id)
+        {
+
+            Historial historial;
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                historial = unidad.genericDAL.Get(id);
+
+            }
+
+            return View(this.Convertir(historial));
+        }
+
+
+
+        public ActionResult Delete(int id)
+        {
+
+            Historial historial;
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                historial = unidad.genericDAL.Get(id);
+
+            }
+
+            return View(this.Convertir(historial));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(HistorialViewModel historialViewModel)
+        {
+            using (UnidadDeTrabajo<Historial> unidad = new UnidadDeTrabajo<Historial>(new BDContext()))
+            {
+                unidad.genericDAL.Remove(this.Convertir(historialViewModel));
+                unidad.Complete();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
