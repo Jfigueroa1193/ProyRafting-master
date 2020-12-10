@@ -248,9 +248,7 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_infoReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ReservaID" Type="int" Mode="In" />
-        </Function>
+        <Function Name="sp_infoReserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_isUserInRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
           <Parameter Name="nombreRol" Type="varchar" Mode="In" />
@@ -568,10 +566,10 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getRolesForUser" ReturnType="Collection(String)">
-            <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+          <Parameter Name="nombreUsuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_getUsuariosRole" ReturnType="Collection(String)">
-            <Parameter Name="nombreRol" Mode="In" Type="String" />
+          <Parameter Name="nombreRol" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RAFTINGModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -582,7 +580,6 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_infoReserva" ReturnType="Collection(RAFTINGModel.sp_infoReserva_Result)">
-            <Parameter Name="ReservaID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_isUserInRole" ReturnType="Collection(Boolean)">
             <Parameter Name="nombreUsuario" Mode="In" Type="String" />

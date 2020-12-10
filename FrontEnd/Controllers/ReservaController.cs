@@ -8,6 +8,7 @@ using BackEnd.DAL;
 using FrontEnd.Models;
 using Microsoft.Reporting.WinForms;
 using Microsoft.Reporting.WebForms;
+using System.Text;
 
 namespace FrontEnd.Controllers
 {
@@ -181,46 +182,44 @@ namespace FrontEnd.Controllers
         }
 
 
-        //public ActionResult Report()
-        //{
+        public ActionResult Report()
+        {
 
-        //    var reportViewer = new ReportViewer
-        //    {
-        //        ProcessingMode = ProcessingMode.Local,
-        //        ShowExportControls = true,
-        //        ShowParameterPrompts = true,
-        //        ShowPageNavigationControls = true,
-        //        ShowRefreshButton = true,
-        //        ShowPrintButton = true,
-        //        SizeToReportContent = true,
-        //        AsyncRendering = false,
-        //    };
-        //    string rutaReporte = "~/Reports/rptClientes.rdlc";
-        //    ///construir la ruta física
-        //    string rutaServidor = Server.MapPath(rutaReporte);
-        //    reportViewer.LocalReport.ReportPath = rutaServidor;
-        //    //reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportCategories.rdlc";
-        //    var infoFuenteDatos = reportViewer.LocalReport.GetDataSourceNames();
-        //    reportViewer.LocalReport.DataSources.Clear();
+            var reportViewer = new ReportViewer
+            {
+                ProcessingMode = ProcessingMode.Local,
+                ShowExportControls = true,
+                ShowParameterPrompts = true,
+                ShowPageNavigationControls = true,
+                ShowRefreshButton = true,
+                ShowPrintButton = true,
+                SizeToReportContent = true,
+                AsyncRendering = false,
+            };
+            string rutaReporte = "~/Reports/rptDetalleReserva.rdlc";
+            ///construir la ruta física
+            string rutaServidor = Server.MapPath(rutaReporte);
+            reportViewer.LocalReport.ReportPath = rutaServidor;
+            //reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportCategories.rdlc";
+            var infoFuenteDatos = reportViewer.LocalReport.GetDataSourceNames();
+            reportViewer.LocalReport.DataSources.Clear();
 
-        //    List<InformacionClientes_Result> datosReporte;
-        //    using (var contextoBD = new ARMEntities())
-        //    {
-        //        datosReporte = contextoBD.InformacionClientes().ToList();
-        //    }
-        //    ReportDataSource fuenteDatos = new ReportDataSource();
-        //    fuenteDatos.Name = infoFuenteDatos[0];
-        //    fuenteDatos.Value = datosReporte;
-        //    reportViewer.LocalReport.DataSources.Add(new ReportDataSource("ClientesDataSet", datosReporte));
+            List<BackEnd.Entities.sp_infoReserva_Result> datosReporte;
+            using (UnidadDeTrabajo<BackEnd.Entities.sp_infoReserva_Result> unidad = new UnidadDeTrabajo<BackEnd.Entities.sp_infoReserva_Result>(new BDContext()))
+            {
+                datosReporte = unidad.genericDAL.GetAll().ToList();
+            }
+            ReportDataSource fuenteDatos = new ReportDataSource();
+            fuenteDatos.Name = infoFuenteDatos[0];
+            fuenteDatos.Value = datosReporte;
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("InfoReservasDataSet", datosReporte));
 
-        //    reportViewer.LocalReport.Refresh();
-        //    ViewBag.ReportViewer = reportViewer;
-
-
-        //    return View();
+            reportViewer.LocalReport.Refresh();
+            ViewBag.ReportViewer = reportViewer;
 
 
+            return View();
 
-        //}//FIN REPORT
+        }
     }
 }

@@ -136,13 +136,9 @@ namespace BackEnd.Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual ObjectResult<sp_infoReserva_Result> sp_infoReserva(Nullable<int> reservaID)
+        public virtual ObjectResult<sp_infoReserva_Result> sp_infoReserva()
         {
-            var reservaIDParameter = reservaID.HasValue ?
-                new ObjectParameter("ReservaID", reservaID) :
-                new ObjectParameter("ReservaID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_infoReserva_Result>("sp_infoReserva", reservaIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_infoReserva_Result>("sp_infoReserva");
         }
     
         public virtual ObjectResult<Nullable<bool>> sp_isUserInRole(string nombreUsuario, string nombreRol)

@@ -15,7 +15,7 @@ namespace BackEnd.Entities
     public partial class Historial
     {
         public int Historial_ID { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public int Colaborador_ID { get; set; }
         public string Observacion { get; set; }
     
