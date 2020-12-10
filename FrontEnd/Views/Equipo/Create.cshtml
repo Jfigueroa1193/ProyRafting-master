@@ -8,13 +8,13 @@
 
 @section seccion
 {
-
+    <h4>Agregar nuevo equipo</h4>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>AGREGAR EQUIPO</h4>
+            
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Crear" class="btn btn-success" />
+                    <input type="submit" value="Agregar" class="btn btn-success" />
                 </div>
             </div>
         </div>

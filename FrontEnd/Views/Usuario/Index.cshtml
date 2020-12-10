@@ -10,9 +10,9 @@
 
     <h2>Usuarios</h2>
 
-    <p>
-        @Html.ActionLink("Crear usuario", "Create")
-    </p>
+    @Html.ActionLink("Agregar nuevo usuario", "Create", new { }, new
+              { @class = "btn btn-success", title = "Agregar" })
+
     <table class="table">
         <tr>
             <th>

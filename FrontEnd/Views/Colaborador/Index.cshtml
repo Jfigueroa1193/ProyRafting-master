@@ -8,8 +8,9 @@
 @section seccion
 {
 
-    <h4>COLABORADORES</h4>
-    @Html.ActionLink("Agregar colaborador", "Create", new { @class = "btn btn-danger", title = "Agregar" })
+    <h2>Colaboradores</h2>
+    @Html.ActionLink("Agregar nuevo colaborador", "Create", new { }, new
+                   { @class = "btn btn-success", title = "Agregar" })
 
     <table class="table">
         <tr>
@@ -50,11 +51,11 @@
                     @Html.DisplayFor(modelItem => item.Rol_ID)
                 </td>
                 <td>
-             
 
 
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Colaborador_ID }, new
-                        { @class = "btn btn-warning", title = "Editar" })
+
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Colaborador_ID }, new
+                    { @class = "btn btn-warning", title = "Editar" })
 
                     @Html.ActionLink("Detalles", "Details", new { id = item.Colaborador_ID }, new
                     { @class = "btn btn-info", title = "Detalles" })

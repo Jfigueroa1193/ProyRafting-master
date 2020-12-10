@@ -8,15 +8,15 @@
 
 @section seccion
 {
-  
-    <h4>EQUIPO</h4>
-        @Html.ActionLink("Agregar equipo", "Create", new { @class = "btn btn-danger", title = "Agregar" })
 
+    <h2>Equipo</h2>
+    @Html.ActionLink("Agregar nuevo equipo", "Create", new { }, new
+                { @class = "btn btn-success", title = "Agregar" })
 
 
     <table class="table">
 
-      
+
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -50,21 +50,21 @@
                 </td>
                 <td>
 
-                       
-
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Equipo_ID }, new
-                        { @class = "btn btn-warning", title = "Editar" })
-
-                        @Html.ActionLink("Detalles", "Details", new { id = item.Equipo_ID }, new
-                        { @class = "btn btn-info", title = "Detalles" })
-
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Equipo_ID }, new
-                        { @class = "btn btn-danger", title = "Eliminar" })
 
 
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Equipo_ID }, new
+                    { @class = "btn btn-warning", title = "Editar" })
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Equipo_ID }, new
+                    { @class = "btn btn-info", title = "Detalles" })
+
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Equipo_ID }, new
+                    { @class = "btn btn-danger", title = "Eliminar" })
 
 
-</td>
+
+
+                </td>
             </tr>
         }
 

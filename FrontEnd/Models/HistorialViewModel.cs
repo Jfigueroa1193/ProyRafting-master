@@ -12,15 +12,15 @@ namespace FrontEnd.Models
         [Key]
         public int Historial_ID { get; set; }
 
-        [Display(Name = "Elija la Fecha")]
+        [Display(Name = "Fecha")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha { get; set; }
 
-        [Display(Name = "Elija un colaborador")]
+        [Display(Name = "Colaborador")]
         public int Colaborador_ID { get; set; }
 
-        [Display(Name = "Anote si tiene observaciones")]
+        [Display(Name = "Observación")]
         [DataType(DataType.Text)]
         public string Observacion { get; set; }
 
