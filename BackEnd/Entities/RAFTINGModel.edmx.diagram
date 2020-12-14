@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7e352fa767344153aa2bb83a8b4a10ef" Name="Diagram1" ZoomLevel="53">
+      <Diagram DiagramId="6589d0b74fe04b4c83ec15e477017f70" Name="Diagram1">
         <EntityTypeShape EntityType="RAFTINGModel.Colaboradores" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Equipo" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RAFTINGModel.Historial" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />

@@ -181,7 +181,6 @@ namespace FrontEnd.Controllers
             return RedirectToAction("Index");
         }
 
-
         public ActionResult Report()
         {
 
@@ -196,7 +195,7 @@ namespace FrontEnd.Controllers
                 SizeToReportContent = true,
                 AsyncRendering = false,
             };
-            string rutaReporte = "~/Reports/rptDetalleReserva.rdlc";
+            string rutaReporte = "~/Reports/rptReserva.rdlc";
             ///construir la ruta física
             string rutaServidor = Server.MapPath(rutaReporte);
             reportViewer.LocalReport.ReportPath = rutaServidor;
@@ -204,15 +203,15 @@ namespace FrontEnd.Controllers
             var infoFuenteDatos = reportViewer.LocalReport.GetDataSourceNames();
             reportViewer.LocalReport.DataSources.Clear();
 
-            List<BackEnd.Entities.sp_infoReserva_Result> datosReporte;
-            using (UnidadDeTrabajo<BackEnd.Entities.sp_infoReserva_Result> unidad = new UnidadDeTrabajo<BackEnd.Entities.sp_infoReserva_Result>(new BDContext()))
+            List<BackEnd.Entities.Reservas> datosReporte;
+            using (UnidadDeTrabajo<BackEnd.Entities.Reservas> unidad = new UnidadDeTrabajo<BackEnd.Entities.Reservas>(new BDContext()))
             {
                 datosReporte = unidad.genericDAL.GetAll().ToList();
             }
             ReportDataSource fuenteDatos = new ReportDataSource();
             fuenteDatos.Name = infoFuenteDatos[0];
             fuenteDatos.Value = datosReporte;
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("InfoReservasDataSet", datosReporte));
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", datosReporte));
 
             reportViewer.LocalReport.Refresh();
             ViewBag.ReportViewer = reportViewer;

@@ -121,6 +121,9 @@
     <Compile Include="Entities\Servicio.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\sp_getDetalleReserva_Result.cs">
+      <DependentUpon>RAFTINGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>RAFTINGModel.tt</DependentUpon>
     </Compile>

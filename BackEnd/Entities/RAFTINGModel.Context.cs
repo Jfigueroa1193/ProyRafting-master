@@ -92,6 +92,15 @@ namespace BackEnd.Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
+        public virtual ObjectResult<sp_getDetalleReserva_Result> sp_getDetalleReserva(Nullable<int> reservaID)
+        {
+            var reservaIDParameter = reservaID.HasValue ?
+                new ObjectParameter("reservaID", reservaID) :
+                new ObjectParameter("reservaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getDetalleReserva_Result>("sp_getDetalleReserva", reservaIDParameter);
+        }
+    
         public virtual ObjectResult<string> sp_getRolesForUser(string nombreUsuario)
         {
             var nombreUsuarioParameter = nombreUsuario != null ?
