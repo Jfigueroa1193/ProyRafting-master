@@ -48,8 +48,10 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Consentimiento, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Consentimiento, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Consentimiento, "", new { @class = "text-danger" })
+                    <select class="form-control" id="Tipo_Pago" name="Tipo_Pago">
+                        <option>Si</option>
+                        <option>No</option>
+                    </select>
                 </div>
             </div>
 
@@ -72,8 +74,11 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Tipo_Pago, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Tipo_Pago, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Tipo_Pago, "", new { @class = "text-danger" })
+                    <select class="form-control" id="Tipo_Pago" name="Tipo_Pago">
+                        <option>Tarjeta</option>
+                        <option>Efectivo</option>
+                        <option>Simpe</option>
+                    </select>
                 </div>
             </div>
 
