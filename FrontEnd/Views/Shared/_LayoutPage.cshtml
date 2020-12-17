@@ -123,23 +123,25 @@
 
            
 
-            <div class="content" >
+            <div class="content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card ">
                             <div class="card-header ">
-                              
+
                                 @RenderSection("seccion", required: false)
 
                             </div>
                             <div class="card-body ">
                                 <div id="contenedor1" class="card"></div>
-                                
+
+                                @RenderSection("report", required: false)
 
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
            
         </div>

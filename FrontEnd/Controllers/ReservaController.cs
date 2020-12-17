@@ -14,11 +14,19 @@ namespace FrontEnd.Controllers
 {
     public class ReservaController : Controller
     {
+        public enum Consent
+        {
+            Si,
+            No
+        }
+
+
         // GET: Reserva
-         private ReservaViewModel Convertir(Reservas reserva)
+        private ReservaViewModel Convertir(Reservas reserva)
         {
             ReservaViewModel reservaViewModel = new ReservaViewModel {
                 Reserva_ID = reserva.Reserva_ID,
+                Usuario_ID = (int)reserva.Usuario_ID,
                 Fecha = (DateTime)reserva.Fecha,
                 Servicio_ID = reserva.Servicio_ID,
                 Consentimiento = reserva.Consentimiento,
@@ -37,6 +45,7 @@ namespace FrontEnd.Controllers
             Reservas ReservaViewModel = new Reservas
             {
                 Reserva_ID = reservaViewModel.Reserva_ID,
+                Usuario_ID = reservaViewModel.Usuario_ID,
                 Fecha = reservaViewModel.Fecha,
                 Servicio_ID = reservaViewModel.Servicio_ID,
                 Consentimiento = reservaViewModel.Consentimiento,
@@ -104,39 +113,49 @@ namespace FrontEnd.Controllers
         public ActionResult Edit(int id)
         {
 
-            Reservas reserva;
+            Reservas reservaEntity;
             using (UnidadDeTrabajo<Reservas> unidad = new UnidadDeTrabajo<Reservas>(new BDContext()))
             {
-                reserva = unidad.genericDAL.Get(id);
+                reservaEntity = unidad.genericDAL.Get(id);
 
             }
 
-            ReservaViewModel reservas = this.Convertir(reserva);
+            ReservaViewModel reservas = this.Convertir(reservaEntity);
 
-            Usuarios  usuario;
+            Usuarios usuario;
             List<Usuarios> usuarios;
 
             using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
-               usuarios = unidad.genericDAL.GetAll().ToList();
-               usuario = unidad.genericDAL.Get(reservas.Usuario_ID);
+                usuarios = unidad.genericDAL.GetAll().ToList();
+                usuario = unidad.genericDAL.Get(reservas.Usuario_ID);
             }
             usuarios.Insert(0, usuario);
             reservas.Usuarios = usuarios;
 
+            Servicio servicio;
+            List<Servicio> servicios;
 
-            return View(this.Convertir(reserva));
+            using (UnidadDeTrabajo<Servicio> unidad = new UnidadDeTrabajo<Servicio>(new BDContext()))
+            {
+                servicios = unidad.genericDAL.GetAll().ToList();
+                servicio = unidad.genericDAL.Get(reservas.Servicio_ID);
+            }
+            servicios.Insert(0, servicio);
+            reservas.Servicios = servicios;
+
+            return View(reservas);
         }
 
 
         [HttpPost]
-        public ActionResult Edit(ReservaViewModel reservaViewModel)
+        public ActionResult Edit(Reservas reserva)
         {
 
 
             using (UnidadDeTrabajo<Reservas> unidad = new UnidadDeTrabajo<Reservas>(new BDContext()))
             {
-                unidad.genericDAL.Update(this.Convertir(reservaViewModel));
+                unidad.genericDAL.Update(reserva);
                 unidad.Complete();
             }
 
