@@ -12,27 +12,20 @@ namespace BackEnd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class Acceso
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Roles()
+        public Acceso()
         {
-            this.Colaboradores = new HashSet<Colaboradores>();
             this.Rol_Acceso = new HashSet<Rol_Acceso>();
-            this.Usuarios = new HashSet<Usuarios>();
-            this.Usuarios1 = new HashSet<Usuarios>();
         }
     
-        public int Rol_ID { get; set; }
-        public string NombreRol { get; set; }
+        public int ID_Acceso { get; set; }
+        public string Nombre_Operacion { get; set; }
+        public Nullable<int> ID_Modulo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Colaboradores> Colaboradores { get; set; }
+        public virtual Modulo Modulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rol_Acceso> Rol_Acceso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
     }
 }

@@ -75,14 +75,18 @@ namespace FrontEnd.Controllers
         }//FIN DE INDEX
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UsuarioViewModel usuarioViewModel)
         {
             Usuarios usuario = this.Convertir(usuarioViewModel);
 
             using (UnidadDeTrabajo<Usuarios> unidad = new UnidadDeTrabajo<Usuarios>(new BDContext()))
             {
+                string contra = usuarioViewModel.Clave;
+                usuario.Clave = Encrypt.GetSha256(contra);
                 unidad.genericDAL.Add(usuario);
                 unidad.Complete();
+                
             }
 
             return RedirectToAction("Index");

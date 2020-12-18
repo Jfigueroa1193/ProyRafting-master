@@ -1,12 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 
-    Layout = "~/Views/Shared/InicioLayout.cshtml";  
+    Layout = "~/Views/Shared/InicioLayout.cshtml";
 }
 
 @model FrontEnd.Models.UsuarioViewModel
 
 @section seccionInicio {
+    @Html.AntiForgeryToken()
 
     <div class="card">
         <article class="card-body">
@@ -15,8 +16,10 @@
             <hr>
             <p class="text-success text-center"></p>
 
-            @using (Html.BeginForm("Index", "Reserva", FormMethod.Post))
-            {
+            @*@using (Html.BeginForm("Index", "Reserva", FormMethod.Post))*@
+            @*{*@
+            <form action="@Url.Content("~/Home/Login")" method="post">
+
                 <br />
                 @Html.TextBoxFor(x => x.Correo, new { @class = "form-control", placeholder = "Ingrese su correo", type = "email" })
                 @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
@@ -40,8 +43,11 @@
                         @Html.LabelFor(x => x.RememberMe, new { @class = "" })
                     </div>*@
                 <br />
-            }
+                @*}*@
+
+            </form>
         </article>
+
         <div class="card-footer">
             <div class="d-flex justify-content-center" style="color: #1d2320">
                 ¿No está registrado?

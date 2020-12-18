@@ -10,10 +10,15 @@
 namespace BackEnd.Entities
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Rol_Acceso
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ID_Rol_Acceso { get; set; }
+        public Nullable<int> Rol_ID { get; set; }
+        public Nullable<int> ID_Acceso { get; set; }
+    
+        public virtual Acceso Acceso { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }
