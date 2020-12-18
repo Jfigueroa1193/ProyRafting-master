@@ -1,15 +1,15 @@
 ﻿
-@section report {
 
-    @using ReportViewerForMvc
-    @{
-        ViewBag.Title = "Report";
-    }
+@using ReportViewerForMvc
+@{
 
-
-    @Html.ReportViewer(
-        ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer,
-        new { scrolling = "no" })
-
-
+    ViewBag.Title = "Report";
+    Layout = null;
 }
+
+
+@Html.ReportViewer(
+    ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer,
+    new { scrolling = "no" ,  width = "75%" ,  Height="75%" })
+
+
